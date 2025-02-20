@@ -25,12 +25,12 @@ const CustomSelect = ({ theme, language, setLanguage }) => {
   return (
     <div
       ref={selectRef}
-      className="inline-block w-full md:w-40 focus:outline-none"
+      className="inline-block w-full md:w-40 focus:outline-hidden"
     >
       {/* Custom Select Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex justify-between items-center px-4 rounded-md border outline-none${
+        className={`w-full flex justify-between items-center px-4 rounded-md border outline-hidden${
           theme.mode === "dark"
             ? "bg-slate-500 opacity-55 hover:opacity-100 text-slate-200 "
             : "bg-slate-200 opacity-55 hover:opacity-100 text-black"

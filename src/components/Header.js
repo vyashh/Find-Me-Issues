@@ -62,7 +62,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
             {/* Project Search Bar */}
             <input
               type="text"
-              className={`transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-none outline-none ${
+              className={`transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-hidden outline-hidden ${
                 inputExpanded
                   ? "w-1/2 pl-5 border-b-slate-300 border-b-2 border-solid"
                   : "w-1/2"
@@ -81,7 +81,7 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
           <div
             onClick={changeTheme}
             className={
-              "cursor-pointer max-lg:!hidden hover:scale-105 transition-all ease-linear duration-200"
+              "cursor-pointer max-lg:hidden! hover:scale-105 transition-all ease-linear duration-200"
             }
             style={{ fontSize: "1.5rem" }}
             aria-hidden="true"

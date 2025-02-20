@@ -64,7 +64,7 @@ const SingleCard = (props) => {
       ) : (
         <>
           {!isEmpty(repo) && (
-            <div className="w-96 bg-gradient-to-t from-[#0373A1] to-[#012A3B] text-white p-4 rounded-3xl ">
+            <div className="w-96 bg-linear-to-t from-[#0373A1] to-[#012A3B] text-white p-4 rounded-3xl ">
               <div className="flex flex-col justify-center items-center gap-2">
                 <Avatar
                   style={{

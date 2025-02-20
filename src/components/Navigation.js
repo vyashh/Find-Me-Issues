@@ -108,7 +108,7 @@ const Navigation = ({
             <div
               onClick={changeTheme}
               className={
-                "cursor-pointer sm:ml-10 max-lg:!block hidden hover:scale-105 transition-all ease-linear duration-200"
+                "cursor-pointer sm:ml-10 max-lg:block! hidden hover:scale-105 transition-all ease-linear duration-200"
               }
               style={{ fontSize: "1.5rem" }}
               aria-hidden="true"
