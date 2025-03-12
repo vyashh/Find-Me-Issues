@@ -9,7 +9,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { ThemeContext } from "../Context/themeContext";
 import Darkmode from "./Buttons/Darkmode";
 import CustomSelect from "./Buttons/Language";
-import { Form, Image, InputGroup } from "react-bootstrap";
+import { Button, Col, Form, Image, InputGroup, Nav } from "react-bootstrap";
 
 const Header = ({ language, setLanguage, setInputSearch }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
@@ -42,46 +42,41 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
   return (
     <Navbar id="header" expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">
-          {theme.mode === "light" ? (
-            <Image src={logo_white} alt="Logo" />
-          ) : (
-            <Image src={logo} alt="Logo" />
-          )}
+        <Navbar.Brand href="#">
+          <Col xs={6} md={4}>
+            {theme.mode === "light" ? (
+              <Image src={logo_white} alt="Logo" />
+            ) : (
+              <Image src={logo} alt="Logo" />
+            )}
+          </Col>
         </Navbar.Brand>
-
-        <div className="flex justify-around items-center gap-11 w-full">
-          <label
-            className={`${
-              theme.mode === "light" ? "bg-slate-200" : "bg-slate-500"
-            }  flex rounded-3xl p-2 h-11 w-full md:w-[40rem]`}
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "100px" }}
+            navbarScroll
           >
-            <CustomSelect
-              theme={theme} // Correctly pass theme directly
-              language={language} // Correctly pass language
-              setLanguage={setLanguage} // Correctly pass setLanguage
-            />
-            {/* Project Search Bar */}
+            {/* <Nav.Link href="#action1">Home</Nav.Link> */}
+          </Nav>
+          <Form className="d-flex">
             <InputGroup
               onMouseEnter={handleSearchClick}
               onMouseLeave={handleSearchClick}
               onKeyUp={(e) => handleInputSearch(e.target.value)}
             >
-              <InputGroup.Text>🔎</InputGroup.Text>
               <Form.Control placeholder="Search" aria-label="With textarea" />
             </InputGroup>
-          </label>
-          <div
-            onClick={changeTheme}
-            className={
-              "cursor-pointer max-lg:hidden! hover:scale-105 transition-all ease-linear duration-200"
-            }
-            style={{ fontSize: "1.5rem" }}
-            aria-hidden="true"
-          >
-            <Darkmode />
-          </div>
-        </div>
+          </Form>
+          <Nav.Link href="#action2">
+            <CustomSelect
+              theme={theme} // Correctly pass theme directly
+              language={language} // Correctly pass language
+              setLanguage={setLanguage} // Correctly pass setLanguage
+            />
+          </Nav.Link>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
