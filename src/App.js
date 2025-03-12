@@ -51,7 +51,7 @@ function App() {
         hasFilters
       />
 
-      <CardSet
+      {/* <CardSet
         pageNumber={pageNumber}
         language={language}
         key={language + pageNumber}
@@ -62,7 +62,7 @@ function App() {
         setReducedState={setReducedState}
         inputSearch={inputSearch}
         setHidePagination={setHidePagination}
-      />
+      /> */}
       <Navigation
         pageNumber={pageNumber}
         maxPageNumber={maxPageNumber}

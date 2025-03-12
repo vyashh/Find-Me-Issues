@@ -1,4 +1,5 @@
-import { Navbar, Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
 import { useContext, useState, useEffect, useRef } from "react";
 import logo from "./../logo.png";
@@ -8,6 +9,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { ThemeContext } from "../Context/themeContext";
 import Darkmode from "./Buttons/Darkmode";
 import CustomSelect from "./Buttons/Language";
+import { Form, Image, InputGroup } from "react-bootstrap";
 
 const Header = ({ language, setLanguage, setInputSearch }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
@@ -38,13 +40,13 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
   };
 
   return (
-    <Navbar id="header">
-      <Container className=" flex lg:flex-row flex-col  justify-center items-center  w-full px-4">
-        <Navbar.Brand href="/" className="d-none d-sm-block ">
+    <Navbar id="header" expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="/">
           {theme.mode === "light" ? (
-            <img src={logo_white} alt="Logo" className="w-24 h-24"></img>
+            <Image src={logo_white} alt="Logo" />
           ) : (
-            <img src={logo} alt="Logo" className="w-24 h-24"></img>
+            <Image src={logo} alt="Logo" />
           )}
         </Navbar.Brand>
 
@@ -60,23 +62,14 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
               setLanguage={setLanguage} // Correctly pass setLanguage
             />
             {/* Project Search Bar */}
-            <input
-              type="text"
-              className={`transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-hidden outline-hidden ${
-                inputExpanded
-                  ? "w-1/2 pl-5 border-b-slate-300 border-b-2 border-solid"
-                  : "w-1/2"
-              } bg-transparent  ${
-                theme.mode === "dark"
-                  ? "opacity-100 text-slate-200"
-                  : "opacity-70 text-slate-800"
-              }`}
-              placeholder="Search"
-              autoComplete="off"
+            <InputGroup
               onMouseEnter={handleSearchClick}
               onMouseLeave={handleSearchClick}
               onKeyUp={(e) => handleInputSearch(e.target.value)}
-            />
+            >
+              <InputGroup.Text>🔎</InputGroup.Text>
+              <Form.Control placeholder="Search" aria-label="With textarea" />
+            </InputGroup>
           </label>
           <div
             onClick={changeTheme}
