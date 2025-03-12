@@ -1,4 +1,5 @@
-import { Navbar, Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
 import { useContext, useState, useEffect, useRef } from "react";
 import logo from "./../logo.png";
@@ -8,6 +9,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { ThemeContext } from "../Context/themeContext";
 import Darkmode from "./Buttons/Darkmode";
 import CustomSelect from "./Buttons/Language";
+import { Button, Col, Form, Image, InputGroup, Nav } from "react-bootstrap";
 
 const Header = ({ language, setLanguage, setInputSearch }) => {
   const { theme, changeTheme } = useContext(ThemeContext);
@@ -38,57 +40,43 @@ const Header = ({ language, setLanguage, setInputSearch }) => {
   };
 
   return (
-    <Navbar id="header">
-      <Container className=" flex lg:flex-row flex-col  justify-center items-center  w-full px-4">
-        <Navbar.Brand href="/" className="d-none d-sm-block ">
-          {theme.mode === "light" ? (
-            <img src={logo_white} alt="Logo" className="w-24 h-24"></img>
-          ) : (
-            <img src={logo} alt="Logo" className="w-24 h-24"></img>
-          )}
+    <Navbar id="header" expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="#">
+          <Col xs={6} md={4}>
+            {theme.mode === "light" ? (
+              <Image src={logo_white} alt="Logo" />
+            ) : (
+              <Image src={logo} alt="Logo" />
+            )}
+          </Col>
         </Navbar.Brand>
-
-        <div className="flex justify-around items-center gap-11 w-full">
-          <label
-            className={`${
-              theme.mode === "light" ? "bg-slate-200" : "bg-slate-500"
-            }  flex rounded-3xl p-2 h-11 w-full md:w-[40rem]`}
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "100px" }}
+            navbarScroll
           >
+            {/* <Nav.Link href="#action1">Home</Nav.Link> */}
+          </Nav>
+          <Form className="d-flex">
+            <InputGroup
+              onMouseEnter={handleSearchClick}
+              onMouseLeave={handleSearchClick}
+              onKeyUp={(e) => handleInputSearch(e.target.value)}
+            >
+              <Form.Control placeholder="Search" aria-label="With textarea" />
+            </InputGroup>
+          </Form>
+          <Nav.Link href="#action2">
             <CustomSelect
               theme={theme} // Correctly pass theme directly
               language={language} // Correctly pass language
               setLanguage={setLanguage} // Correctly pass setLanguage
             />
-            {/* Project Search Bar */}
-            <input
-              type="text"
-              className={`transition-all h-7 ml-2 border-solid border-l-2 border-l-violet-950 pl-2 duration-1000 ease-in-out focus:outline-none outline-none ${
-                inputExpanded
-                  ? "w-1/2 pl-5 border-b-slate-300 border-b-2 border-solid"
-                  : "w-1/2"
-              } bg-transparent  ${
-                theme.mode === "dark"
-                  ? "opacity-100 text-slate-200"
-                  : "opacity-70 text-slate-800"
-              }`}
-              placeholder="Search"
-              autoComplete="off"
-              onMouseEnter={handleSearchClick}
-              onMouseLeave={handleSearchClick}
-              onKeyUp={(e) => handleInputSearch(e.target.value)}
-            />
-          </label>
-          <div
-            onClick={changeTheme}
-            className={
-              "cursor-pointer max-lg:!hidden hover:scale-105 transition-all ease-linear duration-200"
-            }
-            style={{ fontSize: "1.5rem" }}
-            aria-hidden="true"
-          >
-            <Darkmode />
-          </div>
-        </div>
+          </Nav.Link>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
